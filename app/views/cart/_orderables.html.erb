@@ -1,0 +1,55 @@
+<% @cart.orderables.each do |orderable| %>
+  <% product = orderable.product %>
+  <div id="<%= "cart-#{product.id}" %>">
+    <style>
+        input{
+            border:none !important;
+            width:50px !important;
+            text-align: right !important;
+        }
+        .alexgrid{
+            display:grid;
+            grid-template-columns: 80px 150px;
+        }
+        .back_numb{
+            background-color: #f7f7f7 !important;
+            padding: 2px 5px 3px  0!important;
+            margin:  0 !important;
+        }
+        .alexjbtn{ text-align: center !important;line-height: 48px !important;height:48px !important;margin: 2px 0}
+
+    </style>
+    <div style="display:grid !important;grid-template-columns: 50px 150px 100px 200px 50px 200px 200px 200px 200px !important;margin:0 5em; border-bottom: 1px solid #cdcdcd;width: 1450px !important;line-height: 48px !important;" >
+
+
+      <strong>Name:</strong>
+      <%= link_to  product.name, @product %>
+
+      <strong>Decription:</strong>
+      <%= product.decription %>
+      <strong>Price:</strong>
+      <%= product.price %>
+      <%= form_with(url: cart_add_path) do |f| %>
+        <div class="alexgrid">
+          <%= f.hidden_field :id, value: orderable.id %>
+          <%= f.number_field :quantity, value: orderable.quantity, min: 0 , class: "back_numb" %>
+          <%= f.submit "Add Cart" , class: "btn alexjbtn"%>
+        </div>
+      <% end %>
+
+      <%= form_with(url: cart_remove_path) do |f| %>
+        <div class="alexgrid">
+          <%= f.hidden_field :id, value: orderable.id %>
+
+          <%= f.submit "Remove" , class: "btn red darken-4 alexjbtn"%>
+        </div>
+      <% end %>
+      <div>
+           <strong>Total:</strong><%= orderable.total %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+

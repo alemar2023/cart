@@ -1,0 +1,46 @@
+<%= form_for @content, html: { multipart: true } do |form| %>
+  <% if content.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(content.errors.count, "error") %> prohibited this content from being saved:</h2>
+
+      <ul>
+        <% content.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="borderato">
+  <br>
+ <p class="form_all">Carica il contenuto/articolo che vuoi mettere in vendita (formati supportati: Powerpoint, Excel, PDF, Word, Immagini e Mp3)</p> 
+  <%= form.file_field :allegato %>
+  <br>
+  <br>
+  </div>
+  <br>
+  <div>
+    <%= form.label :titolo, style: "display: block" %>
+    <%= form.text_field :titolo %>
+  </div>
+
+  <div>
+    <%= form.label :descrizione, style: "display: block" %>
+    <%= form.text_area :descrizione, class: "materialize-textarea" %>
+  </div>
+  
+  <div>
+    <%= form.label :prezzo_min_50_cent, style: "display: block" %>
+    <%= form.text_field :price %>
+  </div>
+  <div class="borderato">
+  <p class="form_all">Carica un'immagine da utilizzare per il tuo contenuto/articolo </p>
+  <%= form.file_field :cover %><br>
+  <br>
+  </div>
+ 
+  <br><br>
+  <div>
+    <%= form.submit 'Salva Contenuto' , class: "btn  light-blue darken-3" %>
+  </div>
+  <br>
+<% end %>

@@ -1,0 +1,13 @@
+<h1 class="center">Modifica Articolo  "<%= @content.titolo %>"</h1>
+ 
+
+
+<br>
+<%= render "form", content: @content %>
+
+<br>
+
+<div >
+  <%= link_to "Scheda Articolo", @content, class: "btn" %> &nbsp;
+  <%= link_to "Torna a Shop", contents_path , class: "btn" %>
+</div>
